@@ -54,7 +54,7 @@ namespace Video_Production.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,client,ProductionName,ProductionType,Description")] Production production)
+        public async Task<IActionResult> Create([Bind("Id,Client,ProductionName,ProductionType,Description")] Production production)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Video_Production.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,client,ProductionName,ProductionType,Description")] Production production)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Client,ProductionName,ProductionType,Description")] Production production)
         {
             if (id != production.Id)
             {
