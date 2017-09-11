@@ -1,0 +1,56 @@
+@model Video_Production.Models.Production
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Production</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="client" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="client" class="form-control" />
+                <span asp-validation-for="client" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProductionName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ProductionName" class="form-control" />
+                <span asp-validation-for="ProductionName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProductionType" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ProductionType" class="form-control" />
+                <span asp-validation-for="ProductionType" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
