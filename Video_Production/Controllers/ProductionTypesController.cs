@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Video_Production.Models;
+using Video_Production.Data;
 
 namespace Video_Production.Controllers
 {
     public class ProductionTypesController : Controller
     {
-        private readonly Video_ProductionContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ProductionTypesController(Video_ProductionContext context)
+        public ProductionTypesController(ApplicationDbContext context)
         {
             _context = context;    
         }

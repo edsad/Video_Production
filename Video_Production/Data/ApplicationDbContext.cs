@@ -22,5 +22,12 @@ namespace Video_Production.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+        public DbSet<Video_Production.Models.Client> Client { get; set; }
+
+        public DbSet<Video_Production.Models.Production> Production { get; set; }
+
+        public DbSet<Video_Production.Models.ProductionType> ProductionType { get; set; }
+
+        public DbSet<Video_Production.Models.Users> Users { get; set; }
     }
 }

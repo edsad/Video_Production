@@ -53,8 +53,8 @@ namespace Video_Production
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            services.AddDbContext<Video_ProductionContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Video_ProductionContext")));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
