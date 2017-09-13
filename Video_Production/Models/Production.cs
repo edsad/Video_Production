@@ -14,5 +14,8 @@ namespace Video_Production.Models
         public string ProductionName { get; set; }
         public string ProductionType { get; set; }
         public string Description { get; set; }
+        public string Budget { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

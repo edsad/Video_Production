@@ -12,5 +12,6 @@ namespace Video_Production.Models
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string ProductionName { get; set; }
     }
 }
