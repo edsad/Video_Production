@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Video_Production.Models;
 using Video_Production.Data;
+using Video_Production.Models;
 
 namespace Video_Production.Controllers
 {
@@ -22,7 +22,8 @@ namespace Video_Production.Controllers
         // GET: Productions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Production.ToListAsync());
+            var applicationDbContext = _context.Production.Include(p => p.Client);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Productions/Details/5
@@ -34,6 +35,7 @@ namespace Video_Production.Controllers
             }
 
             var production = await _context.Production
+                .Include(p => p.Client)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (production == null)
             {
@@ -46,6 +48,7 @@ namespace Video_Production.Controllers
         // GET: Productions/Create
         public IActionResult Create()
         {
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace Video_Production.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Client,ProductionName,ProductionType,Description,Budget,StartDate,EndDate")] Production production)
+        public async Task<IActionResult> Create([Bind("Id,ClientId,ProductionName,ProductionType,Description,Budget,StartDate,EndDate")] Production production)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace Video_Production.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", production.ClientId);
             return View(production);
         }
 
@@ -78,6 +82,7 @@ namespace Video_Production.Controllers
             {
                 return NotFound();
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", production.ClientId);
             return View(production);
         }
 
@@ -86,7 +91,7 @@ namespace Video_Production.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Client,ProductionName,ProductionType,Description,Budget,StartDate,EndDate")] Production production)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,ProductionName,ProductionType,Description,Budget,StartDate,EndDate")] Production production)
         {
             if (id != production.Id)
             {
@@ -113,6 +118,7 @@ namespace Video_Production.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", production.ClientId);
             return View(production);
         }
 
@@ -125,6 +131,7 @@ namespace Video_Production.Controllers
             }
 
             var production = await _context.Production
+                .Include(p => p.Client)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (production == null)
             {

@@ -8,8 +8,8 @@ using Video_Production.Data;
 namespace Video_Production.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170913151101_Initial2")]
-    partial class Initial2
+    [Migration("20170914145243_initial4")]
+    partial class initial4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -197,7 +197,7 @@ namespace Video_Production.Data.Migrations
 
                     b.Property<string>("Budget");
 
-                    b.Property<string>("Client");
+                    b.Property<int>("ClientId");
 
                     b.Property<string>("Description");
 
@@ -210,6 +210,8 @@ namespace Video_Production.Data.Migrations
                     b.Property<DateTime>("StartDate");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Production");
                 });
@@ -278,6 +280,14 @@ namespace Video_Production.Data.Migrations
                     b.HasOne("Video_Production.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Video_Production.Models.Production", b =>
+                {
+                    b.HasOne("Video_Production.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
