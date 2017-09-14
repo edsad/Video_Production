@@ -10,7 +10,8 @@ namespace Video_Production.Models
 
         public int Id { get; set; }
 
-        public string Client { get; set; }
+        public int ClientId { get; set; }
+        public Client Client { get; set; }
         public string ProductionName { get; set; }
         public string ProductionType { get; set; }
         public string Description { get; set; }

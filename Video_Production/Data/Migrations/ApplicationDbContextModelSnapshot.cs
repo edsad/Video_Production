@@ -196,7 +196,7 @@ namespace Video_Production.Data.Migrations
 
                     b.Property<string>("Budget");
 
-                    b.Property<string>("Client");
+                    b.Property<int>("ClientId");
 
                     b.Property<string>("Description");
 
@@ -209,6 +209,8 @@ namespace Video_Production.Data.Migrations
                     b.Property<DateTime>("StartDate");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Production");
                 });
@@ -277,6 +279,14 @@ namespace Video_Production.Data.Migrations
                     b.HasOne("Video_Production.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Video_Production.Models.Production", b =>
+                {
+                    b.HasOne("Video_Production.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
