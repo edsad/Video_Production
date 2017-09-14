@@ -29,5 +29,7 @@ namespace Video_Production.Data
         public DbSet<Video_Production.Models.ProductionType> ProductionType { get; set; }
 
         public DbSet<Video_Production.Models.Users> Users { get; set; }
+
+        public DbSet<Video_Production.Models.Crew> Crew { get; set; }
     }
 }
