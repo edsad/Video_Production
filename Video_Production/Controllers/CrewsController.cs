@@ -54,7 +54,7 @@ namespace Video_Production.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Producer,Director,ScriptWriter,DP,CameraOp")] Crew crew)
+        public async Task<IActionResult> Create([Bind("Id,CrewName,Producer,Director,ScriptWriter,DP,CameraOp")] Crew crew)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Video_Production.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Producer,Director,ScriptWriter,DP,CameraOp")] Crew crew)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CrewName,Producer,Director,ScriptWriter,DP,CameraOp")] Crew crew)
         {
             if (id != crew.Id)
             {

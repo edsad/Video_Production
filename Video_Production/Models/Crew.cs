@@ -9,6 +9,7 @@ namespace Video_Production.Models
     {
         public int Id { get; set; }
 
+        public string CrewName { get; set; }
         public string Producer { get; set; }
         public string Director { get; set; }
         public string ScriptWriter { get; set; }
