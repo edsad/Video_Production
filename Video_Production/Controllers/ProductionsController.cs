@@ -48,7 +48,7 @@ namespace Video_Production.Controllers
         // GET: Productions/Create
         public IActionResult Create()
         {
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FirstName");
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName");
             return View();
         }
 
@@ -82,7 +82,7 @@ namespace Video_Production.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FirstName", production.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", production.ClientId);
             return View(production);
         }
 
