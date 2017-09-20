@@ -9,6 +9,7 @@
 <div>
     <h4>Crew</h4>
     <hr />
+    <div class="popoverContent">
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.CrewName)
@@ -47,6 +48,7 @@
             @Html.DisplayFor(model => model.CameraOp)
         </dd>
     </dl>
+        </div>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

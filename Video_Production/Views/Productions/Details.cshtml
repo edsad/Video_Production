@@ -53,12 +53,24 @@
             @Html.DisplayFor(model => model.EndDate)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CrewName)
+            @Html.DisplayNameFor(model => model.Crew.CrewName)
         </dt>
+
+        <span class="myPopover" title=""
+        data-content="<div><h5><strong>Crew Name</strong></h5>@Model.Crew.CrewName
+        <h5><strong>Producer</strong></h5>@Model.Crew.Producer
+        <h5><strong>Director</strong></h5>@Model.Crew.Director
+        <h5><strong>Scriptwriter</strong></h5>@Model.Crew.ScriptWriter
+        <h5><strong>DP</strong></h5>@Model.Crew.DP
+        <h5><strong>Camera Operator</strong></h5>@Model.Crew.CameraOp</div>"</span>
+
         <dd>
-            @Html.DisplayFor(model => model.CrewName)
+            @Html.DisplayFor(model => model.Crew.CrewName)
         </dd>
+
+
     </dl>
+
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
