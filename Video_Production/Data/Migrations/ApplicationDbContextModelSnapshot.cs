@@ -218,7 +218,7 @@ namespace Video_Production.Data.Migrations
 
                     b.Property<int>("ClientId");
 
-                    b.Property<string>("CrewName");
+                    b.Property<int>("CrewId");
 
                     b.Property<string>("Description");
 
@@ -233,6 +233,8 @@ namespace Video_Production.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
+
+                    b.HasIndex("CrewId");
 
                     b.ToTable("Production");
                 });
@@ -309,6 +311,11 @@ namespace Video_Production.Data.Migrations
                     b.HasOne("Video_Production.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Video_Production.Models.Crew", "Crew")
+                        .WithMany()
+                        .HasForeignKey("CrewId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

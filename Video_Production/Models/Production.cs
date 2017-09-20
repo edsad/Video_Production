@@ -16,7 +16,8 @@ namespace Video_Production.Models
         public string ProductionType { get; set; }
         public string Description { get; set; }
         public string Budget { get; set; }
-        public string CrewName { get; set; }
+        public int CrewId { get; set; }
+        public Crew Crew { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }

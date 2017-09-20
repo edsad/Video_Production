@@ -35,6 +35,7 @@ namespace Video_Production.Controllers
             }
 
             var production = await _context.Production
+                .Include(p => p.Crew)
                 .Include(p => p.Client)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (production == null)
@@ -49,6 +50,7 @@ namespace Video_Production.Controllers
         public IActionResult Create()
         {
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName");
+            ViewData["CrewId"] = new SelectList(_context.Crew, "Id", "CrewName");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace Video_Production.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClientId,ProductionName,ProductionType,Description,Budget,CrewName,StartDate,EndDate")] Production production)
+        public async Task<IActionResult> Create([Bind("Id,ClientId,CrewId,ProductionName,ProductionType,Description,Budget,CrewName,StartDate,EndDate")] Production production)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +68,7 @@ namespace Video_Production.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", production.ClientId);
+            ViewData["CrewId"] = new SelectList(_context.Crew, "Id", "Id", production.CrewId);
             return View(production);
         }
 
@@ -83,6 +86,7 @@ namespace Video_Production.Controllers
                 return NotFound();
             }
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", production.ClientId);
+            ViewData["CrewId"] = new SelectList(_context.Crew, "Id", "FullName", production.CrewId);
             return View(production);
         }
 
@@ -91,7 +95,7 @@ namespace Video_Production.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,ProductionName,ProductionType,Description,Budget,CrewName,StartDate,EndDate")] Production production)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,CrewId,ProductionName,ProductionType,Description,Budget,CrewName,StartDate,EndDate")] Production production)
         {
             if (id != production.Id)
             {

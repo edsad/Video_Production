@@ -5,17 +5,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Video_Production.Data.Migrations
 {
-    public partial class initial4 : Migration
+    public partial class Initial1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropIndex(
-                name: "IX_AspNetUserRoles_UserId",
-                table: "AspNetUserRoles");
-
-            migrationBuilder.DropIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles");
 
             migrationBuilder.CreateTable(
                 name: "Client",
@@ -24,12 +17,29 @@ namespace Video_Production.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    ProductionName = table.Column<string>(nullable: true)
+                    LastName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Client", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Crew",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CameraOp = table.Column<string>(nullable: true),
+                    CrewName = table.Column<string>(nullable: true),
+                    DP = table.Column<string>(nullable: true),
+                    Director = table.Column<string>(nullable: true),
+                    Producer = table.Column<string>(nullable: true),
+                    ScriptWriter = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Crew", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -61,6 +71,7 @@ namespace Video_Production.Data.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
+            
             migrationBuilder.CreateTable(
                 name: "Production",
                 columns: table => new
@@ -69,6 +80,7 @@ namespace Video_Production.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Budget = table.Column<string>(nullable: true),
                     ClientId = table.Column<int>(nullable: false),
+                    CrewId = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     EndDate = table.Column<DateTime>(nullable: false),
                     ProductionName = table.Column<string>(nullable: true),
@@ -84,22 +96,30 @@ namespace Video_Production.Data.Migrations
                         principalTable: "Client",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Production_Crew_CrewId",
+                        column: x => x.CrewId,
+                        principalTable: "Crew",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles",
-                column: "NormalizedName",
-                unique: true);
+          
 
             migrationBuilder.CreateIndex(
                 name: "IX_Production_ClientId",
                 table: "Production",
                 column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Production_CrewId",
+                table: "Production",
+                column: "CrewId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+           
             migrationBuilder.DropTable(
                 name: "Production");
 
@@ -112,19 +132,8 @@ namespace Video_Production.Data.Migrations
             migrationBuilder.DropTable(
                 name: "Client");
 
-            migrationBuilder.DropIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_UserId",
-                table: "AspNetUserRoles",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles",
-                column: "NormalizedName");
+            migrationBuilder.DropTable(
+                name: "Crew");
         }
     }
 }

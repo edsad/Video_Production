@@ -11,6 +11,25 @@
 .navbar-collapse {
     background-color: black;
 }
+
+a {
+    color: blue;
+}
+
+span{
+    display: block !important;
+  color: rgba(#ffff00, .5);
+  -webkit-transition: color 500ms ease-in;
+  transition: color 500ms ease-in;
+
+  &:hover{
+    color: rgba(#ffff00, .9);
+  }
+}
+.popover{
+    top: 150px !important;
+    left: 295px !important;
+}
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {

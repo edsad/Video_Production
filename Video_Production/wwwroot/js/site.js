@@ -1,6 +1,6 @@
 ﻿// Write your Javascript code.
 
-$('i.icon').popover({
+$('span').popover({
     html: true,
     placement: 'right',
     trigger: 'hover',
