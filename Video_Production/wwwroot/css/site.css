@@ -16,18 +16,18 @@ a {
     color: blue;
 }
 
-span{
-    display: block !important;
-  color: rgba(#ffff00, .5);
-  -webkit-transition: color 500ms ease-in;
-  transition: color 500ms ease-in;
-
-  &:hover{
-    color: rgba(#ffff00, .9);
-  }
+span {
+    display: block;
+    color: gray;
+    -webkit-transition: color 500ms ease-in;
+    transition: color 500ms ease-in;
 }
+  :hover{
+    color: black;
+  }
+
 .popover{
-    top: 150px !important;
+    top: 150px;
     left: 295px !important;
 }
 /* Wrapping element */
