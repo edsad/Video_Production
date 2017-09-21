@@ -28,8 +28,16 @@ span {
 
 .popover{
     top: 150px;
-    left: 295px !important;
+    left: 450px !important;
 }
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
