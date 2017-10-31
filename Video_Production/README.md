@@ -14,3 +14,5 @@ drop-down list for the CLIENT NAME and CREW if this info has already been entere
 then fill in the rest of the info to complete the form.
 
 Each form has appropiate EDIT and DELETE options.
+
+THIS IS VERSION 1.0
